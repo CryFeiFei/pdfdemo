@@ -9,6 +9,7 @@
 #include <QDesktopWidget>
 #include <QPainter>
 #include <QScrollArea>
+#include <QScrollBar>
 #include "poppler/poppler-qt5.h"
 #include "pdfcanvas.h"
 

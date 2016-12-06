@@ -35,10 +35,15 @@ MainWindow::MainWindow(QWidget *parent)
     QScrollArea* pscrollarea = new QScrollArea(this);
     pscrollarea->resize(size);
     pdfcanvas*   pPDFcannvas = new pdfcanvas();
-    pPDFcannvas->resize(size*2);
+
+    int nNum = m_document->numPages();
+    pPDFcannvas->resize(size.width(), size.height()*nNum);
 
     pscrollarea->setBackgroundRole(QPalette::Dark);
     pscrollarea->setWidget(pPDFcannvas);
+
+    QScrollBar* pScrollBar = pscrollarea->verticalScrollBar();
+    pScrollBar->setValue(size.height());
 
 
 }

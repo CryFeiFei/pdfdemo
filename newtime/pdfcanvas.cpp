@@ -19,14 +19,23 @@ pdfcanvas::~pdfcanvas()
 }
 void pdfcanvas::paintEvent(QPaintEvent *e)
 {
-    QPainter* painter = new QPainter(this);
+    QPainter* painter = new QPainter(this);   
+    int nNum = m_document->numPages();
     m_pdfPage = m_document->page(0);
     QSize size = m_pdfPage->pageSize();
-    QImage image1 = m_pdfPage->renderToImage(72, 72, 0, 0, size.width(), size.height());
-    painter->drawImage(0,0,image1);
+    for(int i = 1; i <= 5; ++i)
+    {
+        m_pdfPage = m_document->page(i-1);
+        QImage image1 = m_pdfPage->renderToImage(72, 72, 0, 0, size.width(), size.height());
+        painter->drawImage(0,(i-1)*(size.height()+8),image1);
+    }
 
-    m_pdfPage = m_document->page(1);
-    QImage image2 = m_pdfPage->renderToImage(72, 72, 0, 0, size.width(), size.height());
-    painter->drawImage(0, size.height(), image2);
+//    m_pdfPage = m_document->page(0);
+//    QImage image1 = m_pdfPage->renderToImage(72, 72, 0, 0, size.width(), size.height());
+//    painter->drawImage(0,0,image1);
+
+//    m_pdfPage = m_document->page(1);
+//    QImage image2 = m_pdfPage->renderToImage(72, 72, 0, 0, size.width(), size.height());
+//    painter->drawImage(0, size.height(), image2);
 
 }
