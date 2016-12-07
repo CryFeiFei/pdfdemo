@@ -29,6 +29,7 @@ public:
 
 public:
     void paintEvent(QPaintEvent *e);
+    bool event(QEvent *event);
 };
 
 #endif // MAINWINDOW_H

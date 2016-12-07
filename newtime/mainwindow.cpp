@@ -67,3 +67,18 @@ void MainWindow::paintEvent(QPaintEvent *e)
 //    painter->drawImage(0, size.height(), image1);
 
 }
+
+bool MainWindow::event(QEvent *event)
+{
+   if(event->type() == QEvent::Expose)
+   {
+       int t = 5;
+   }
+
+   if(event->type() == QEvent::MouseButtonPress)
+   {
+       int s = 10;
+   }
+
+   return true;
+}
