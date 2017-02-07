@@ -6,7 +6,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     Poppler::Page*       m_pdfPage;
     Poppler::Document*   m_document;
+
     QString filename;
+
     filename = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/test.pdf";
     m_document = Poppler::Document::load(filename);
     m_document->setRenderHint(Poppler::Document::Antialiasing);
@@ -32,17 +34,17 @@ MainWindow::MainWindow(QWidget *parent)
  //   QImage image = m_pdfPage->renderToImage(72,72,0,0,size.width(),size.height());
  //   image.save(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + QString("/22233333.png"), "png");
 
-    QScrollArea* pscrollarea = new QScrollArea(this);
-    pscrollarea->resize(size);
-    pdfcanvas*   pPDFcannvas = new pdfcanvas();
+    m_pscrollarea = new QScrollArea(this);
+    m_pscrollarea->resize(size);
+    pdfcanvas*   pPDFcannvas = new pdfcanvas(m_pscrollarea);
 
     int nNum = m_document->numPages();
     pPDFcannvas->resize(size.width(), size.height()*nNum);
 
-    pscrollarea->setBackgroundRole(QPalette::Dark);
-    pscrollarea->setWidget(pPDFcannvas);
+    m_pscrollarea->setBackgroundRole(QPalette::Dark);
+    m_pscrollarea->setWidget(pPDFcannvas);
 
-    QScrollBar* pScrollBar = pscrollarea->verticalScrollBar();
+    QScrollBar* pScrollBar = m_pscrollarea->verticalScrollBar();
     pScrollBar->setValue(size.height());
 
 
@@ -68,17 +70,3 @@ void MainWindow::paintEvent(QPaintEvent *e)
 
 }
 
-bool MainWindow::event(QEvent *event)
-{
-   if(event->type() == QEvent::Expose)
-   {
-       int t = 5;
-   }
-
-   if(event->type() == QEvent::MouseButtonPress)
-   {
-       int s = 10;
-   }
-
-   return true;
-}

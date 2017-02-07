@@ -23,13 +23,13 @@ public:
 
 public:
     pdfcanvas*  m_pPDFcanvas;
+    QScrollArea* m_pscrollarea;
 //public:
 //    Poppler::Page*       m_pdfPage;
 //    Poppler::Document*   m_document;
 
 public:
     void paintEvent(QPaintEvent *e);
-    bool event(QEvent *event);
 };
 
 #endif // MAINWINDOW_H
